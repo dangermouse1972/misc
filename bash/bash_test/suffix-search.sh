@@ -14,7 +14,7 @@
 ######################################################################
 
 
-set -f
+
 
 search_path=$1
 filename=$2
@@ -33,12 +33,19 @@ function help
     echo "suffix-search.sh <path> <fileNames> <from_date> <to_date>"
     echo "args:"
     echo "      path:        Root folder of search"
-    echo "      filename(s): Filename to search for. Comma Seperate each file with no spaces (eg. filename1,filename2,etc)."
+    echo "      filename(s): Filename to search for. Explicit naming and wildscards can be used" 
+    echo "                   Enclose with quotes and seperate each search patter wiht Commas." 
+    echo "                   (eg. 'pattern1,pattern2,pattern3,etc')."
     echo "                   All wild cards permited"
     echo "      from_date:   Search from date (including date).  Date be suplied in unix time"
     echo "      to_date:     Search to date (include date specifed). Date to be suplied in unix time" 
     echo ""
-    echo "PLEASE NOTE.  Datetime must be in unix time.  For exampple run <date -d 'Apr 1 2020 13:00' +'%s'> to get unix time"
+
+    echo "PLEASE NOTE:  Datetime must be in unix time.  For exampple run <date -d 'Apr 1 2020 13:00' +'%s'> to get unix time"
+    echo ""
+
+    echo "example:"
+    echo "          ./suffix-search.sh /foo/ 'file name,filename*,file[0-9]*.txt' 1609372800 1601465256"
 } 
 
 function validateArgs
